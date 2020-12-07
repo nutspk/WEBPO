@@ -1,0 +1,15 @@
+﻿
+<input type="hidden" id="RedirectToLogout" value="@Url.Action("Logout", "Account")" />
+<input type="hidden" id="RedirectToIndex" value="@Url.Action("Index", "PublicMessage")" />
+<input type="hidden" id="urlLogin" value="@Url.Action("Login", "Account")" />
+<input type="hidden" id="urlLoginAsync" value="@Url.Action("LoginAjax", "Account")" />
+
+@Html.AntiForgeryToken()
+
+<input type="hidden" id="errorMessage" value="An error has occurred. Please contact your system administrator." />
+
+<div id="overlay" style="display:none;">
+    <div class="spinner"></div>
+    <br />
+    Loading...
+</div>

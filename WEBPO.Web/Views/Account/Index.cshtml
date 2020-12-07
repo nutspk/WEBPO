@@ -1,0 +1,351 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>NTN Manufacturing(Thailand) Co., Ltd.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatitble" content="IE=edge,Chrome=1" />
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="@Url.Content("~/css/style.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/icons/font-awesome/css/fontawesome-all.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/sweetalert2.min.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/js/plugin/jquery/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/sweetalert2.min.js")"></script>
+
+    <script src="@Url.Content("~/js/project.js")" type="text/javascript"></script>
+
+    <style type="text/css">
+        #overlay {
+            background: #ffffff;
+            color: #666666;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 5000;
+            top: 0;
+            left: 0;
+            float: left;
+            text-align: center;
+            padding-top: 25%;
+            opacity: .80;
+        }
+
+        .spinner {
+            margin: 0 auto;
+            height: 64px;
+            width: 64px;
+            animation: rotate 0.8s infinite linear;
+            border: 5px solid firebrick;
+            border-right-color: transparent;
+            border-radius: 50%;
+        }
+
+        @@keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script type="text/javascript">
+        let images = ['@Url.Content("~/images/Logon/bg.jpg")'];
+        let nextimage = 0;
+
+        $(function () {
+            $("form[name='loginform']").validate({
+                rules: {
+                    UserName: { required: true },
+                    Password: { required: true }
+                },
+                messages: {
+                    UserName: { required: "Please enter your user name" },
+                    Password: { required: "Please enter your password" }
+                }
+            });
+
+            $("[name='UserName']").validate({
+                rules: {
+                    UserName: { required: true }
+                },
+                messages: {
+                    UserName: { required: "Please enter your user name" }
+                },
+            });
+
+            //doSlideshow();
+        });
+
+        function doLogOn() {
+            showLoadding();
+
+            if ($("form[name='loginform']").valid()) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: $('#urlLoginAsync').val(),
+                    data: {
+                        UserName: $("[name='UserName']").val(),
+                        Password: $("[name='Password']").val()
+                    },
+                    async: true,
+                    success: function (resp) {
+                        let { success, icon, message, data } = getResponse(resp);
+
+                        if (success) {
+                            applicationAlert(message, icon, $('#RedirectToIndex').val());
+                        } else {
+                            applicationAlert(message, icon);
+                            $("[name='Password']").val("");
+                        }
+
+                    },
+                    error: function (xhr, textStatus) {
+                        applicationAlert(xhr.responseText);
+                    },
+                    complete: function (request) {
+                        hideLoadding();
+                    },
+                });
+            }
+        }
+
+        function forgetPassword() {
+            if ($("[name='UserName']").valid()) {
+                showLoadding();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ForgetPassword", "Account")',
+                    data: {
+                        userId: $("[name='UserName']").val()
+                    },
+                    success: function (resp) {
+                        let { success, icon, message, data } = getResponse(resp);
+
+                        applicationAlert(message, icon);
+                    },
+                    error: function () {
+                        applicationAlert();
+                    },
+                    complete: function () {
+                        hideLoadding();
+                    }
+                });
+
+
+            }
+        }
+
+        function txtUsername_onKeypress(evt) {
+            var key = (window.Event) ? evt.which : window.event.keyCode;
+            if (!key) { key = window.event.keyCode; }
+            if (key == 13) {
+                document.getElementById("txtPassword").focus();
+            }
+        }
+
+        function txtPassword_onKeypress(evt) {
+            var key = (window.Event) ? evt.which : window.event.keyCode;
+            if (!key) { key = window.event.keyCode; }
+            if (key == 13) {
+                doLogOn();
+            }
+        }
+
+        function doSlideshow() {
+            if (nextimage >= images.length) { nextimage = 0; }
+            $('.global-BG')
+                .css('background-image', 'url("' + images[nextimage++] + '")')
+                .fadeIn(400, function () {
+                    setTimeout(doSlideshow, 10000);
+                });
+        }
+
+    </script>
+
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        .global-BG {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('@Url.Content("~/images/Logon/bg.jpg")');
+        }
+
+        .logo {
+            width: 220px;
+            height: 74px;
+            background: url('@Url.Content("~/images/logo.png")');
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .login-block {
+            width: 400px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            border-top: 5px solid #0090D5;
+            margin: 0 auto;
+        }
+
+            .login-block h1 {
+                text-align: center;
+                color: #000;
+                font-size: 18px;
+                text-transform: uppercase;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+            .login-block footer {
+                text-align: left;
+                color: #a5a5a5;
+                font-size: 12px;
+                margin-top: 30px;
+                margin-bottom: 0px;
+            }
+
+            .login-block input {
+                width: 100%;
+                height: 42px;
+                box-sizing: border-box;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-bottom: 15px;
+                font-size: 14px;
+                padding: 0 20px 0 50px;
+                outline: none;
+            }
+
+                .login-block input#txtUsername {
+                    background: #fff url('@Url.Content("~/images/Logon/username.png")') 10px top no-repeat;
+                    background-size: 16px 80px;
+                }
+
+                    .login-block input#txtUsername:focus {
+                        background: #fff url('@Url.Content("~/images/Logon/username.png")') 10px bottom no-repeat;
+                        background-size: 16px 80px;
+                    }
+
+                .login-block input#txtPassword {
+                    background: #fff url('@Url.Content("~/images/Logon/password.png")') 10px top no-repeat;
+                    background-size: 16px 80px;
+                }
+
+                    .login-block input#txtPassword:focus {
+                        background: #fff url('@Url.Content("~/images/Logon/password.png")') 10px bottom no-repeat;
+                        background-size: 16px 80px;
+                    }
+
+                /*.login-block input:active, .login-block input:focus {
+            border: 1px solid #ff656c;
+        }*/
+
+                .login-block input#btnLogon {
+                    width: 100%;
+                    height: 40px;
+                    background: #ff656c;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    border: 1px solid #e15960;
+                    color: #fff;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 0px;
+                }
+
+                    .login-block input#btnLogon:hover {
+                        background: #ff7b81;
+                    }
+
+
+        .footer-block {
+            width: 400px;
+            padding: 0px;
+            border-top: 0px;
+            margin: 0 auto;
+        }
+
+            .footer-block footer {
+                text-align: center;
+                color: rgba(0,0,0,0.5);
+                font-size: 12px;
+                font-weight: bold;
+                margin-top: 15px;
+                margin-bottom: 0px;
+            }
+
+        .forgot-block {
+            margin: 15px 0 15px 0;
+        }
+
+        .error {
+            font-size: 13px;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+
+<body class="global-BG">
+
+    <div class="logo"></div>
+
+    @await Html.PartialAsync("_Variables")
+
+    <form name="loginform" method="post" asp-controller="Account" asp-action="Login">
+
+        <div class="login-block">
+            <h1>NMT - Web PO EDI</h1>
+
+            <input type="text" id="txtUsername" name="UserName" class="form-control" onkeypress="txtUsername_onKeypress(this)" autocomplete="off" placeholder="User name" required />
+
+            <input type="password" id="txtPassword" name="Password" class="form-control" onkeypress="txtPassword_onKeypress(this)" autocomplete="off" placeholder="Password" required />
+
+            <div class="text-right forgot-block">
+                <a href="javascript:void(0)" onclick="forgetPassword();">Forget your password ?</a>
+            </div>
+
+            <button id="btnLogon" class="btn btn-primary btn-block" type="button" onclick="doLogOn();">Log On</button>
+
+
+            <div class="footer-block mt-5">
+                <footer>
+                    Version 1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Updated:&nbsp; @DateTime.Now.ToShortDateString()
+                </footer>
+            </div>
+
+        </div>
+
+
+    </form>
+</body>
+</html>
+
+

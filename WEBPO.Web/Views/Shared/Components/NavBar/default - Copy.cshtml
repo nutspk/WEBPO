@@ -1,0 +1,44 @@
+﻿<header class="topbar" data-navbarbg="skin5">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <div class="navbar-header" data-logobg="skin5">
+            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="#" onclick="return false;"><i class="ti-menu ti-close"></i></a>
+            <a class="navbar-brand" href="index.html">
+                <span class="logo-text mx-auto">
+                    <img src="https://www.ntn.co.jp/japan/images/logo.png" alt="homepage" class="light-logo" />
+                </span>
+            </a>
+
+            <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="#" onclick="return false;" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+            <ul class="navbar-nav float-left">
+                <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="#" onclick="return false;" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+            </ul>
+
+            <ul class="navbar-nav float-left d-none d-lg-block mr-auto">
+                <li class="ml-3 my-auto">
+                    <h5 class="text-light m-0">NTN Manufacturing(Thailand) Co., Ltd. </h5>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav float-right ml-auto">
+                <li class="mr-5 my-auto">
+                    <span class="text-light">User : @ViewBag.UserName</span>
+                </li>
+
+                <li class="mr-5 my-auto">
+                    <span class="text-light">Company : @ViewBag.CompanyName</span>
+                </li>
+
+                <li class="mr-3">
+                    <button id="btnLogout" class="btn btn-sm btn-youtube" onclick="logOut();">
+                        <i class="fa fa-power-off mr-2"></i>Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+

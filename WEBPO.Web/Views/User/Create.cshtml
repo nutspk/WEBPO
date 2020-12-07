@@ -1,0 +1,124 @@
+﻿@model UserCreateViewModel
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form id="frm" class="card card-body" asp-action="Create" novalidate="novalidate">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group row">
+        <label asp-for="UserID" class="asp-label col-form-label control-label col-sm-2"></label>
+        <input asp-for="UserID" class="form-control form-control-sm col-sm-2" />
+        <div class="col-sm-8 pl-md-5 d-inline-flex">
+            <label asp-for="VendorCode" class="asp-label col-form-label control-label col-sm-4 col-md-auto"></label>
+            <select asp-for="VendorCode" class="form-control form-control-sm w-75" asp-items="@ViewData["VendorList"] as SelectList">
+                <option value="">-- Select All --</option>
+            </select>
+            <span asp-validation-for="VendorCode" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="UserName" class="asp-label col-form-label control-label col-sm-2"></label>
+        <input asp-for="UserName" class="form-control form-control-sm col-sm-5" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Email" class="asp-label col-form-label control-label col-sm-2"></label>
+        <input asp-for="Email" class="form-control form-control-sm col-sm-5" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="SendMailFlag" class="asp-label col-form-label control-label col-sm-2"></label>
+        <div class="icheck-primary d-inline-block">
+            <input id="SendMail" name="SendMail" type="checkbox" />
+            <label for="SendMail"></label>
+            <input asp-for="SendMailFlag" type="hidden" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="UserType" class="asp-label col-form-label control-label col-sm-2"></label>
+        <select asp-for="UserType" class="form-control form-control-sm w-25">
+            <option value="00">Domestic User</option>
+            <option value="01">Oversea User</option>
+            <option value="99">Admin</option>
+        </select>
+        <span asp-validation-for="UserType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group d-inline-flex mt-5">
+        <div class="mx-auto">
+            <button id="btnUpdate" type="button" class="btn btn-sm btn-primary mr-5">Update</button>
+
+            <a asp-action="Index" class="btn btn-sm btn-secondary">Cancel</a>
+        </div>
+    </div>
+
+</form>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+    $(function () {
+        initCtrl()
+    });
+
+    function initCtrl() {
+        let chk = $('#SendMail').prop('checked') ? "1" : "0";
+        let chked = $('#SendMailFlag').val();
+        $('#SendMail').prop('checked', chked ==="1")
+
+        $('#SendMail').change(function () {
+            let val = $('#SendMail').prop('checked') ? "1" : "0";
+            $('#SendMailFlag').val(val);
+        });
+
+        $('select').select2({ width: 'resolve' });
+
+        $('#btnUpdate').click(function (event) {
+
+            if (!$("#frm").valid()) return false;
+
+            showLoadding();
+
+            let formdata = new FormData(document.querySelector('#frm'));
+
+            $.ajax({
+                type: "POST",
+                url: $('form').attr("action"),
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (resp) {
+                    let { success, icon, message, data } = getResponse(resp);
+
+                    if (success) {
+                        applicationAlert(message, icon, '@Url.Action("Index", "User")');
+                    } else {
+                        if (data) {
+                            applicationAlert(message, icon);
+                            $('#UserID').val("");
+                        } else
+                            applicationAlert(message, icon, window.location.href);
+                    }
+                },
+                error: function (xhr) {
+                    applicationAlert(xhr.responseText);
+                },
+                complete: function () {
+                    hideLoadding();
+                }
+            });
+        });
+
+    }
+
+    </script>
+
+}

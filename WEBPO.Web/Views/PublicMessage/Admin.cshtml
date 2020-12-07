@@ -1,0 +1,93 @@
+﻿@model IPagedList<PublicMsgViewModel>
+@{
+    ViewData["Title"] = "Public Message";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="form-horizontal">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <div class="form-group row">
+                                <label for="fname" class="col-4 col-sm-5 text-right control-label col-form-label"> Date</label>
+                                <div class="col-5 col-md-4 col-lg-2">
+                                    <input type="text" class="form-control form-control-sm datepicker" placeholder="Day/Month/Year" onkeydown="return false;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button type="button" class="btn btn-info mr-4" > Search</button>
+                            <button type="button" class="btn btn-success" > New</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <div id="dataTable"></div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    let dt;
+    $(function () {
+        $('.datepicker').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true
+        });
+    })
+
+    function updateUI() {
+        const endPoint = '@Url.Action("GetPublicMessage","PublicMessage")';
+
+        $('#dataTable').DataTable({
+            "destroy": true,
+            "processing": true,
+            "responsive": true,
+            "autoWidth": false,
+            "scrollX": true,
+            "lengthMenu": [[10, 25, 50], [10, 25, 50]],
+            "aaSorting": [[0, 'desc']],
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "ajax": {
+                "url": endPoint,
+                "type": "GET",
+                "data": function (data) {
+                    var info = $('#dataTable').DataTable().page.info();
+                    return {
+                        skipRows: info.start,
+                        pageSize: info.length - 5,
+                        search: $('div.dataTables_filter input').val()
+                    };
+                },
+                beforeSend: function (jqXHR, settings) { },
+                error: function (error) {
+                    applicationAlert(error);
+                }
+            },
+            "columns": columns,
+            "columnDefs": columnDefs,
+            fnDrawCallback: function (oSettings) {
+
+            },
+        });
+    }
+    
+</script>
+}
+

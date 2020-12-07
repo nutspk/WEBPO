@@ -1,0 +1,137 @@
+﻿
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 14px;
+}
+
+.preloader {
+    background: #00000029 !important;
+}
+
+.skin-bg {
+    background: #0087d1 !important;
+}
+
+.mw-25 {
+    max-width: 25% !important;
+}
+.mw-50 {
+    max-width: 50% !important;
+}
+.mw-75 {
+    max-width: 75% !important;
+}
+
+.fa-1-5x {
+    font-size: 1.5em;
+}
+
+.fa-2-5x {
+    font-size: 2.5em;
+}
+
+.fa-3-5x {
+    font-size: 3.5em;
+}
+
+.dataTables_scrollHeadInner {
+    min-width: 100% !important;
+}
+
+.field-validation-error {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+}
+
+select[name=dataTable_length].custom-select-sm {
+    height: calc(1.8125rem + 2px);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: 100% !important;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.asp-label {
+    justify-content: flex-end !important;
+}
+
+.asp-label:after {
+    padding-right: 10px;
+    padding-left: 10px;
+    /*content: " : "*/
+    content: ""
+}
+
+.brand-link .brand-image-sm {
+    float: left;
+    line-height: .8;
+    margin-top: -.3rem;
+    margin-bottom: -.5rem;
+    max-height: 33px;
+    width: auto;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 10px !important;
+    height: 20px !important;
+}
+
+.input-validation-error {
+    border-color: #dc3545 !important;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e"); background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+#overlay {
+    background: #ffffff;
+    color: #666666;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 25%;
+    opacity: .80;
+}
+
+.spinner {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid firebrick;
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

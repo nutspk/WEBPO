@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MenuViewModel>
+@{
+    int i = 0;
+}
+
+<aside class="left-sidebar" data-sidebarbg="skin5">
+    <div class="scroll-sidebar">
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="p-t-30">
+                @foreach (var category in Model)
+                {
+                    i++;
+                    <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-receipt"></i>
+                            <span class="hide-menu">@category.MenuName</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level @Html.Raw( (i==1 || !User.IsInRole("ADMIN")) ? "in" : "")">
+
+                            @if (category.MenuList != null)
+                            {
+                                foreach (var menu in category.MenuList)
+                                {
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark" href="@Url.Content(menu.IUrl)" aria-expanded="false">
+                                            <i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> @menu.IFnName</span>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</aside>

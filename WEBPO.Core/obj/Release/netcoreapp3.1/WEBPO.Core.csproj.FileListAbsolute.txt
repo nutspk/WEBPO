@@ -1,0 +1,12 @@
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\bin\Release\netcoreapp3.1\WEBPO.Core.deps.json
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\bin\Release\netcoreapp3.1\WEBPO.Core.dll
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\bin\Release\netcoreapp3.1\WEBPO.Core.pdb
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\bin\Release\netcoreapp3.1\WEBPO.Domain.dll
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\bin\Release\netcoreapp3.1\WEBPO.Domain.pdb
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.csprojAssemblyReference.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.AssemblyInfoInputs.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.AssemblyInfo.cs
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.csproj.CoreCompileInputs.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.csproj.CopyComplete
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.dll
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Core\obj\Release\netcoreapp3.1\WEBPO.Core.pdb

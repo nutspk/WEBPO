@@ -1,0 +1,12 @@
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\bin\Release\netcoreapp3.1\WEBPO.Domain.deps.json
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\bin\Release\netcoreapp3.1\WEBPO.Domain.runtimeconfig.json
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\bin\Release\netcoreapp3.1\WEBPO.Domain.runtimeconfig.dev.json
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\bin\Release\netcoreapp3.1\WEBPO.Domain.dll
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\bin\Release\netcoreapp3.1\WEBPO.Domain.pdb
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.csprojAssemblyReference.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.AssemblyInfoInputs.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.AssemblyInfo.cs
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.csproj.CoreCompileInputs.cache
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.dll
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.pdb
+D:\Work\INET\_Project\JST\src\Core\WEBPO.Domain\obj\Release\netcoreapp3.1\WEBPO.Domain.genruntimeconfig.cache

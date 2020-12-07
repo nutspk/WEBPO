@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WEBPO.Domain.Entities.MS_VS>
+
+@{
+    ViewData["Title"] = "Vendor Master";
+}
+
+<form class="card card-body">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group row">
+                <div class="form-inline col-6">
+                    <label class="col-form-label col-sm-3 control-label text-right">Vendor Code : </label>
+                    <div class="col-sm-9 ">
+                        <select class="form-control form-control-sm" name="vendorCode" asp-items="@ViewBag.VendorList">
+                            <option value="">-- Select All --</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                @*<div class="form-inline col-6">
+                    <label class="col-form-label col-sm-3 control-label text-right">Vendor Name : </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="vendorName" class="form-control" autocomplete="off" />
+                    </div>
+                </div>*@
+            </div>
+
+            <div class="form-group row">
+                <div class="form-inline col-12">
+                    <div class="mx-auto">
+                        <button type="submit" class="btn btn-sm btn-primary mr-3"> Search</button>
+                        <a href="@Url.Action("Create")"
+                           class="btn btn-sm btn-success">New</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<div class="card card-body">
+
+    <table id="dataTable" class="table table-sm table-bordered table-striped">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    Vendor Code
+                </th>
+                <th>
+                    Vendor Name
+                </th>
+                <th>
+                    EDI Type
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IVsCd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IVsDesc)
+                    </td>
+                    <td>
+                        @if (item.IEdiType == "01")
+                        {
+                            @Html.Raw("EDI")
+                        }
+                        else
+                        {
+                            @Html.Raw("NON EDI")
+                        }
+
+                    </td>
+                    <td class="d-inline-flex">
+                        <a asp-action="Edit" asp-route-id="@item.IVsCd"><i class="fa-1-5x fa-edit fas"></i></a>
+
+                        <form asp-action="Delete" asp-route-id="@item.IVsCd">
+                            <input type="hidden" asp-for="@item.IVsCd" />
+                            <button type="submit" onclick="return confirm('Do you want Delete ?')" class="btn btn-sm bg-transparent"><i class="fa-1-5x fas fa-trash-alt"></i></button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('select:not(:name=dataTable_length)').select2({ width: 'resolve', dropdownAutoWidth: 'true' });
+
+            $('#dataTable').dataTable({
+                "searching": false,
+                "ordering": false,
+                "responsive": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+}

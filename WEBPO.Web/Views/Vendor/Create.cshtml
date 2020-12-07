@@ -1,0 +1,78 @@
+﻿@model WEBPO.Domain.Entities.MS_VS
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MS_VS</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IVsCd" class="control-label">Vendor Code</label>
+                <input asp-for="IVsCd" class="form-control" />
+                <span asp-validation-for="IVsCd" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="IVsType" class="control-label"></label>
+                <input asp-for="IVsType" class="form-control" />
+                <span asp-validation-for="IVsType" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="IVsDesc" class="control-label">Vendor Name</label>
+                <input asp-for="IVsDesc" class="form-control" />
+                <span asp-validation-for="IVsDesc" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="ISectionCd" class="control-label"></label>
+                <input asp-for="ISectionCd" class="form-control" />
+                <span asp-validation-for="ISectionCd" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="IEdiType" class="control-label"></label>
+                <select asp-for="IEdiType" class="form-control">
+                    <option value="01" selected> EDI</option>
+                    <option value="00">NOT EDI</option>
+                </select>
+                <span asp-validation-for="IEdiType" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="IGroupId" class="control-label"></label>
+                <input asp-for="IGroupId" class="form-control" />
+                <span asp-validation-for="IGroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IPathId" class="control-label"></label>
+                <input asp-for="IPathId" class="form-control" />
+                <span asp-validation-for="IPathId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IEntryDate" class="control-label"></label>
+                <input asp-for="IEntryDate" class="form-control" />
+                <span asp-validation-for="IEntryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IUpdDate" class="control-label"></label>
+                <input asp-for="IUpdDate" class="form-control" />
+                <span asp-validation-for="IUpdDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IUpdUserid" class="control-label"></label>
+                <input asp-for="IUpdUserid" class="form-control" />
+                <span asp-validation-for="IUpdUserid" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
